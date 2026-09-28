@@ -10,9 +10,9 @@ from .models import Administrador
 def login(request):
     # Verifica se o formulário foi enviado
     if request.method == "POST":
-        # Pega o login digitado
+          # Pega o login digitado
         login_digitado = request.POST.get("login")
-        # Pega a senha digitada
+          # Pega a senha digitada
         senha_digitada = request.POST.get("senha")
 
         try:
@@ -28,7 +28,7 @@ def login(request):
                 return redirect("painel")
 
             else:
-                # Mostra mensagem de erro
+                #  mensagem de erro
                 return render(
                     request,
                     "administrador/login.html",
@@ -36,34 +36,34 @@ def login(request):
                 )
         # Caso o login não seja encontrado
         except Administrador.DoesNotExist:
-            # Mostra mensagem de erro
+            # mensagem de erro
             return render(
                 request,
                 "administrador/login.html",
                 {"erro": "Login ou senha incorretos."}
             )
 
-    # Mostra a página de login
+    # mosttra a pagina de login
     return render(request, "administrador/login.html")
 
 # Função responsável pelo painel
 def painel(request):
-    # Verifica se o administrador está logado
+    # Ve se o usuario esta logado
     if "admin_id" not in request.session:
         return redirect("login")
     # Busca o administrador pelo ID salvo na sessão
     administrador = Administrador.objects.get(
         id=request.session["admin_id"]
     )
-    # Mostra o painel
+    # mostra a pagina do painel
     return render(
         request,
         "administrador/painel.html",
         {"administrador": administrador}
     )
-# Função responsável pelo logout
+# Função que faz o logout
 def logout(request):
-    # Encerra a sessão
+    # finaliza a sessão
     request.session.flush()
-    # Volta para a página de login
+    # Volta para o login de usuario
     return redirect("login")

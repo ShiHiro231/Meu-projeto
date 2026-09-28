@@ -1,15 +1,15 @@
-# Importa a função para criar URLs
+# Importa a função para criar urls
 from django.urls import path
-# Importa as funções do arquivo views.py
+# Importa as funções do views.py
 from . import views
 
-# Define as URLs do aplicativo
+# Define as urrls do aplicativo
 urlpatterns = [
-    # URL para fazer login
+    # url para fazer login
     path("login/", views.login, name="login"),
-    # URL para acessar o painel
+    # url para acessar o painel
     path("painel/", views.painel, name="painel"),
-    # URL para sair da conta
+    # url para sair da conta
     path("logout/", views.logout, name="logout")
     ]
 

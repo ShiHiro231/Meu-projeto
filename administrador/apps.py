@@ -1,7 +1,7 @@
-# Importa a configuração padrão dos aplicativos do Django
+# Importa a configuração do Django
 from django.apps import AppConfig
 
-# Configuração do aplicativo administrador
+# Configuração do administrador
 class AdministradorConfig(AppConfig):
-    # Define o nome do aplicativo
+    # nome do aplicativo
     name = 'administrador'
