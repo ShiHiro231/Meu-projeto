@@ -9,3 +9,5 @@ class Administrador(models.Model):
     def __str__(self):
         return self.nome
 
+class Evento(models.Model):
+    nome_evento = models

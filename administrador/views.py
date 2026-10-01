@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import check_password
 from .models import Administrador
 
 # Função responsável pelo login
-def login(request):
+def login(request):    
     # Verifica se o formulário foi enviado
     if request.method == "POST":
           # Pega o login digitado
@@ -42,9 +42,10 @@ def login(request):
                 "administrador/login.html",
                 {"erro": "Login ou senha incorretos."}
             )
-
-    # mosttra a pagina de login
-    return render(request, "administrador/login.html")
+        # mosttra a pagina de login
+        return render(request, "administrador/login.html")
+    
+    
 
 # Função responsável pelo painel
 def painel(request):
