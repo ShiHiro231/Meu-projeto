@@ -3,13 +3,31 @@
 from django.shortcuts import render, redirect
 # Importa função para verificar a senha
 from django.contrib.auth.hashers import check_password
+from django.utils import timezone
+from datetime import timedelta
 # Importa o modelo Administrador
 from .models import Administrador
+
 
 # Função responsável pelo login
 def login(request):    
     # Verifica se o formulário foi enviado
     if request.method == "POST":
+
+        tentativas = request.session.get ("tentativas", 0)
+
+        if tentativas >= 5:
+            bloqueio_ate = request.session.get("bloqueio_ate")
+            if bloqueio_ate:
+                if timezone.now().timestamp() < bloqueio_ate:
+                    return render(
+                        request,
+                        "administrador/login.html",
+                        {"erro": "Seu acesso foi bloqueado temporariamente. Tente novamente mais tarde."}
+                    )
+                request.session["tentativas"] = 0
+                request.session["bloqueio_ate"] = None
+                tentativas = 0
           # Pega o login digitado
         login_digitado = request.POST.get("login")
           # Pega a senha digitada
@@ -22,20 +40,32 @@ def login(request):
             )
             # Verifica se a senha está correta
             if check_password(senha_digitada, administrador.senha):
+                request.session["tentativas"] = 0
+                request.session["bloqueio_ate"] = None
                 # Guarda o ID do administrador na sessão
                 request.session["admin_id"] = administrador.id
                 # Vai para o painel
                 return redirect("painel")
 
             else:
+                request.session["tentativas"] = tentativas + 1
+                
+                if tentativas + 1 >= 5:
+                    request.session["bloqueio_ate"] = (timezone.now() + timedelta(minutes=5)).timestamp()
+
+
                 #  mensagem de erro
                 return render(
+                    
                     request,
                     "administrador/login.html",
                     {"erro": "Login ou senha incorretos."}
                 )
         # Caso o login não seja encontrado
         except Administrador.DoesNotExist:
+            request.session["tentativas"] = tentativas + 1
+            if tentativas + 1 >= 5:
+                request.session["bloqueio_ate"] = (timezone.now() + timedelta(minutes=5)).timestamp()
             # mensagem de erro
             return render(
                 request,
