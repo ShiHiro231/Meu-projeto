@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'administrador/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'administrador/css/calendario.css' %}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-logo">🌱 ONG Admin</div>
+    <nav class="topbar-nav">
+        <a href="{% url 'painel' %}" class="nav-link">Painel</a>
+        <a href="{% url 'calendario' %}" class="nav-link ativo">Calendário</a>
+        <a href="{% url 'logout' %}" class="nav-link sair">Sair</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1 class="page-title">Calendário de Eventos</h1>
+    <p class="page-subtitle">Clique em um dia para criar ou editar um evento.</p>
+
+    <div class="calendario-layout">
+
+        <!-- Calendário -->
+        <section class="calendario-card">
+            <header class="calendario-header">
+                <button id="btn-anterior" class="btn-nav">‹</button>
+                <h2 id="mes-ano"></h2>
+                <button id="btn-proximo" class="btn-nav">›</button>
+            </header>
+
+            <div class="legenda">
+                <span class="legenda-item"><span class="dot dot-doacao"></span> Doação</span>
+                <span class="legenda-item"><span class="dot dot-voluntario"></span> Voluntariado</span>
+                <span class="legenda-item"><span class="dot dot-ambos"></span> Ambos</span>
+            </div>
+
+            <div class="dias-semana">
+                <span>Dom</span><span>Seg</span><span>Ter</span>
+                <span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+            </div>
+
+            <div id="grid-dias" class="grid-dias"></div>
+        </section>
+
+        <!-- Painel de edição -->
+        <aside id="painel-edicao" class="painel-edicao escondido">
+            <h3 id="titulo-painel">Novo evento</h3>
+
+            <div class="form-group">
+                <label>Data</label>
+                <input type="date" id="input-data" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Nome do evento</label>
+                <input type="text" id="input-nome" placeholder="Ex: Campanha do Agasalho">
+            </div>
+
+            <div class="form-group">
+                <label>Descrição (opcional)</label>
+                <textarea id="input-descricao" rows="3" placeholder="Detalhes do evento..."></textarea>
+            </div>
+
+            <div class="linha-horario">
+                <div class="form-group">
+                    <label>Início</label>
+                    <input type="time" id="input-inicio">
+                </div>
+                <div class="form-group">
+                    <label>Fim</label>
+                    <input type="time" id="input-fim">
+                </div>
+            </div>
+
+            <fieldset class="tipos">
+                <legend>Este dia aceita:</legend>
+                <label class="check"><input type="checkbox" id="check-doacao"> Doação</label>
+                <label class="check"><input type="checkbox" id="check-voluntario"> Voluntariado</label>
+            </fieldset>
+
+            <div class="acoes">
+                <button id="btn-salvar" class="btn btn-primario">Salvar</button>
+                <button id="btn-excluir" class="btn btn-perigo escondido">Excluir</button>
+                <button id="btn-cancelar" class="btn btn-secundario">Cancelar</button>
+            </div>
+        </aside>
+
+    </div>
+</main>
+
+<!-- Token CSRF pro JS usar nas requisições POST -->
+{% csrf_token %}
+
+<script src="{% static 'administrador/js/calendario.js' %}"></script>
+</body>
+</html>

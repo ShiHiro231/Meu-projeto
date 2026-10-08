@@ -1,34 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Administrativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'administrador/css/base.css' %}">
 </head>
-
 <body>
 
-    <h1>Área Administrativa</h1>
-    {% if erro %}
-    <p>{{ erro }}</p>
-    {% endif %}
+<div class="login-wrapper">
+    <div class="login-card">
+        <div class="login-header">
+            <h1>Área Administrativa</h1>
+            <p>Acesso restrito à equipe</p>
+        </div>
 
-    <form method="POST">
+        {% if erro %}
+            <div class="alert alert-erro">{{ erro }}</div>
+        {% endif %}
 
-        {% csrf_token %}
+        <form method="POST">
+            {% csrf_token %}
 
-        <label>Login:</label>
-        <input type="text" name="login">
+            <div class="form-group">
+                <label>Login</label>
+                <input type="text" name="login" required autofocus>
+            </div>
 
-        <br><br>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" name="senha" required>
+            </div>
 
-        <label>Senha:</label>
-        <input type="password" name="senha">
-
-        <br><br>
-
-        <button type="submit">Entrar</button>
-
-    </form>
+            <button type="submit" class="btn btn-primario btn-block">Entrar</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

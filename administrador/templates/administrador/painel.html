@@ -1,12 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-        <body>
-            <h1>Painel de administrador</h1>
-            <a href="{% url "logout" %}">Sair</a>
-    </body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'administrador/css/base.css' %}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-logo">🌱 ONG Admin</div>
+    <nav class="topbar-nav">
+        <a href="{% url 'painel' %}" class="nav-link ativo">Painel</a>
+        <a href="{% url 'calendario' %}" class="nav-link">Calendário</a>
+        <a href="{% url 'logout' %}" class="nav-link sair">Sair</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1 class="page-title">Olá, {{ administrador.nome }} 👋</h1>
+    <p class="page-subtitle">Bem-vindo ao painel administrativo.</p>
+
+    <div class="cards-grid">
+        <a href="{% url 'calendario' %}" class="card">
+            <div class="card-icon">📅</div>
+            <h3>Calendário</h3>
+            <p>Gerencie eventos, doações e voluntariado.</p>
+        </a>
+    </div>
+</main>
+
+</body>
 </html>
