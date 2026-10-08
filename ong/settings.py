@@ -2,14 +2,12 @@
 Configurações do Django para o projeto ong.
 
 Gerado pelo 'django-admin startproject' usando o Django 6.1.1.
-
 """
 
 from pathlib import Path
 
 # Constrói os caminhos dentro do projeto desta forma: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 
 # AVISO DE SEGURANÇA: mantenha a chave secreta em segredo em produção!
@@ -96,9 +94,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internacionalização
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -109,13 +107,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # E-mail
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
