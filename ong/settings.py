@@ -6,6 +6,7 @@ Gerado pelo 'django-admin startproject' usando o Django 6.1.1.
 
 from pathlib import Path
 
+
 # Constrói os caminhos dentro do projeto desta forma: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
