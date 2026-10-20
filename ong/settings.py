@@ -16,6 +16,7 @@ load_dotenv()
 from pathlib import Path
 >>>>>>> 73708858b0fa5e8d1302f6acdb31dccb75c5befb
 
+
 # Constrói os caminhos dentro do projeto desta forma: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,6 +78,7 @@ WSGI_APPLICATION = 'ong.wsgi.application'
 DATABASES = {
     'default': {
 <<<<<<< HEAD
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
@@ -87,6 +89,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
 >>>>>>> 73708858b0fa5e8d1302f6acdb31dccb75c5befb
+=======
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'projeto_ong',
+        'USER' : 'projeto',
+        'PASSWORD' : 'projeto',
+        'HOST' : 'localhost',
+        'PORT' : '3306',
+>>>>>>> 32cf532fabf7a8bf8d53f5522d81ebc58ea1c1c8
     }
 }
 
