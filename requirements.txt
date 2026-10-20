@@ -1,6 +1,11 @@
 asgiref==3.12.1
+<<<<<<< HEAD
 Django==6.1.2
 gunicorn==26.2.0
 PyMySQL==1.2.3
 sqlparse==0.6.0
 whitenoise==6.12.0
+=======
+Django==6.1.1
+sqlparse==0.6.0
+>>>>>>> 73708858b0fa5e8d1302f6acdb31dccb75c5befb
