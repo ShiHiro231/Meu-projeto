@@ -3,8 +3,18 @@ Configurações do Django para o projeto ong.
 
 Gerado pelo 'django-admin startproject' usando o Django 6.1.1.
 """
+<<<<<<< HEAD
+import os
 
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Carrega as variáveis de ambiente do arquivo .env
+load_dotenv()
+=======
+
+from pathlib import Path
+>>>>>>> 73708858b0fa5e8d1302f6acdb31dccb75c5befb
 
 
 # Constrói os caminhos dentro do projeto desta forma: BASE_DIR / 'subdir'.
@@ -67,12 +77,26 @@ WSGI_APPLICATION = 'ong.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+=======
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+>>>>>>> 73708858b0fa5e8d1302f6acdb31dccb75c5befb
+=======
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'projeto_ong',
         'USER' : 'projeto',
         'PASSWORD' : 'projeto',
         'HOST' : 'localhost',
         'PORT' : '3306',
+>>>>>>> 32cf532fabf7a8bf8d53f5522d81ebc58ea1c1c8
     }
 }
 
