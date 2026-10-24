@@ -14,9 +14,10 @@
 <header class="topbar">
     <div class="topbar-logo">🌱 ONG Admin</div>
     <nav class="topbar-nav">
-        <a href="{% url 'painel' %}" class="nav-link">Painel</a>
-        <a href="{% url 'calendario' %}" class="nav-link ativo">Calendário</a>
-        <a href="{% url 'logout' %}" class="nav-link sair">Sair</a>
+        <form action="{% url 'logout' %}" method="POST" style="display: contents;">
+    {% csrf_token %}
+    <button type="submit" class="nav-link sair" style="background: none; border: none; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; color: inherit;">Sair</button>
+        </form>
     </nav>
 </header>
 
