@@ -1,0 +1,209 @@
+:root {
+    --verde: #285A45;
+    --verde-escuro: #1d4434;
+    --fundo: #E6E9DF;
+    --texto: #1f2d26;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-size: 20px;
+}
+
+.Topo {
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.Topo .logotipo {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--verde);
+    background: white;
+    overflow: hidden;
+}
+
+.Topo .logotipo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.Topo .logotipo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Topo .sumário {
+    background-color: var(--verde);
+    opacity: 0.95;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    flex: 1;
+    margin: 0 20px 0 5%;
+    padding: 0 20px;
+}
+
+.List_Sumari {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.Topo .sumário a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.Topo .sumário a:hover,
+.Topo .sumário a:focus-visible {
+    border-bottom-color: white;
+    outline: none;
+}
+
+.Voluntario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+    padding: 0 24px 80px;
+}
+
+.Titulo {
+    margin: 0 0 16px;
+    font-size: 2.4rem;
+    color: var(--verde);
+}
+
+.Descricao {
+    max-width: 640px;
+    margin: 0 0 40px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.Form_Voluntario {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(40, 90, 69, 0.15);
+}
+
+.Form_Voluntario form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.Form_Voluntario label {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.Form_Voluntario input,
+.Form_Voluntario textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 1rem;
+    border: 2px solid #c5cdbf;
+    border-radius: 10px;
+    background: #fafbf8;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.Form_Voluntario textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.Form_Voluntario input:focus,
+.Form_Voluntario textarea:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(40, 90, 69, 0.2);
+}
+
+.Form_Voluntario button {
+    margin-top: 28px;
+    padding: 14px;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    background: var(--verde);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.Form_Voluntario button:hover {
+    background: var(--verde-escuro);
+}
+
+.Form_Voluntario button:focus-visible {
+    outline: 3px solid #ffd54a;
+    outline-offset: 2px;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+    .Topo .logotipo {
+        width: 70px;
+        height: 70px;
+        margin-left: 16px;
+    }
+
+    .Topo .sumário {
+        margin-left: 16px;
+        padding: 10px 12px;
+        font-size: 0.8em;
+    }
+
+    .Voluntario {
+        margin-top: 170px;
+    }
+}
+
+@media (max-width: 560px) {
+    .Titulo {
+        font-size: 2rem;
+    }
+
+    .Form_Voluntario {
+        padding: 24px 18px;
+    }
+}
