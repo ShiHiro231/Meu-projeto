@@ -1,0 +1,470 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROCRED</title>
+    <link rel="stylesheet" href="{% static 'administrador/css/home.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'administrador/img/Procred.png' %}" />
+  </head>
+  <body>
+    <div class="Topo">
+      <div class="logotipo">
+        <a href="{% url 'home_publica' %}">
+          <img src="{% static 'administrador/img/Procred.png' %}" alt="logotipo" />
+        </a>
+      </div>
+      <div class="sumário">
+        <ul class="List_Sumari">
+          <li><a href="#quem-somos">QUEM SOMOS</a></li>
+          <li><a href="#projetos">PROJETOS/AÇÕES</a></li>
+          <li><a href="#como-ajudar">COMO AJUDAR</a></li>
+          <li><a href="#voluntario">SEJA VOLUNTÁRIO</a></li>
+          <li><a href="#contato">CONTATO</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="quem-somos">
+      <div class="Quem_Somos">
+        <img src="{% static 'administrador/img/transferir.jpeg' %}" alt="Quem somos" />
+        <h2 class="Titulo">Quem Somos</h2>
+      </div>
+      <p class="Descricao">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
+        nesciunt ullam earum consequuntur nobis debitis laboriosam nulla
+        reprehenderit modi soluta. Optio culpa, velit non eum qui nesciunt, iste
+        officia voluptatum laboriosam, porro debitis alias delectus odio nemo
+        repudiandae. In unde deserunt, fugit rem laudantium quam est nesciunt!
+        Distinctio quaerat qui error in fugit doloribus adipisci quo, vitae
+        quisquam possimus enim officiis placeat architecto. Quasi mollitia
+        dignissimos sed reiciendis enim rerum commodi! Ullam fugiat ipsa illo
+        repellat dolores deleniti velit nemo quae nostrum sed? Quo placeat
+        tempora impedit laudantium earum numquam quisquam voluptatum, enim
+        consequuntur quibusdam laborum accusamus officia et quae dolorum quas
+        labore minus deleniti odio modi alias tenetur! Perferendis repellendus
+        autem quae molestiae impedit nobis, assumenda quod maiores atque
+        voluptatem inventore ab? Deleniti voluptatum repellat vero quae placeat
+        ipsa, asperiores sunt ad architecto esse perspiciatis quaerat illo
+        voluptates quam itaque, sint rerum? Et, necessitatibus? Laudantium
+        commodi inventore dolore enim, beatae atque dolorem optio minima ex
+        sunt. Pariatur dicta quaerat repellat esse nisi odio quod numquam
+        tempore. Eveniet consequatur in repellat neque, odio vitae, repudiandae
+        tempore ut et similique deserunt facere molestiae facilis saepe ducimus
+        fugiat maxime sequi quasi optio minus? Laborum, officia provident nulla
+        exercitationem odit unde officiis amet animi. Officiis inventore
+        doloribus necessitatibus debitis laboriosam nobis sit nemo error
+        eligendi tenetur ipsum impedit molestias culpa consequatur, quasi fuga
+        officia a cum itaque animi. Totam reiciendis nemo numquam facilis
+        nostrum, libero soluta perspiciatis perferendis repellat quisquam ipsa
+        nulla officiis dolorum quam illum voluptatum eius expedita voluptas
+        doloremque eum tempora minima!
+      </p>
+    </section>
+
+    <div class="botoes_dz">
+      <div class="doe_agora">
+        <a href="{% url 'pagamento' %}">Doe agora</a>
+      </div>
+      <div class="whatsapp">
+        <a href="https://wa.me/SEU_NUMERO" target="_blank" rel="noopener">
+          <img src="{% static 'administrador/img/Texto do seu parágrafo.png' %}" alt="Whatsapp" />
+        </a>
+      </div>
+    </div>
+
+    <section class="projetos" id="projetos">
+      <div class="projetos_titulo">
+        <h2>PROJETOS / AÇÕES</h2>
+        <p>Fotos, vídeos e texto apresentando as ações e projetos.</p>
+      </div>
+
+      <div class="carrossel">
+        <button class="seta seta_esq" aria-label="Anterior"></button>
+
+        <div class="carrossel_moldura">
+          <div class="carrossel_janela">
+            <div class="carrossel_trilho">
+              <article class="slide">
+                <img src="{% static 'administrador/img/transferir.jpeg' %}" alt="Projeto 1" />
+                <p class="slide_legenda">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry. Lorem Ipsum has been the industry's standard dummy text
+                  ever since 1966.
+                </p>
+              </article>
+
+              <article class="slide">
+                <img src="{% static 'administrador/img/transferir.jpeg' %}" alt="Projeto 2" />
+                <p class="slide_legenda">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry. Lorem Ipsum has been the industry's standard dummy text
+                  ever since 1966.
+                </p>
+              </article>
+
+              <article class="slide">
+                <img src="{% static 'administrador/img/transferir.jpeg' %}" alt="Projeto 3" />
+                <p class="slide_legenda">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry. Lorem Ipsum has been the industry's standard dummy text
+                  ever since 1966.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="pontos">
+            <span class="ponto ativo"></span>
+            <span class="ponto"></span>
+            <span class="ponto"></span>
+          </div>
+        </div>
+
+        <button class="seta seta_dir" aria-label="Próximo"></button>
+      </div>
+    </section>
+
+    <section class="como-ajudar" id="como-ajudar">
+      <h1>Como ajudar</h1>
+      <p>Conheça as formas de contribuir com o projeto</p>
+
+      <div class="cards">
+        <div class="card">
+          <h2><span aria-hidden="true">❤️</span> Voluntariado</h2>
+          <p>
+            Seu tempo pode transformar vidas! Compartilhe suas habilidades,
+            participe das nossas ações e faça parte dessa transformação.
+          </p>
+          <!-- CORRIGIDO AQUI -->
+          <a class="card_botao" href="{% url 'voluntario' %}">Quero ser voluntário</a>
+        </div>
+
+        <div class="card">
+          <h2><span aria-hidden="true">💚</span> Contribuição</h2>
+          <p>
+            Toda contribuição faz a diferença! Apoie nossos projetos com uma
+            doação financeira e ajude a transformar mais vidas.
+          </p>
+          <a class="card_botao" href="{% url 'pagamento' %}">Quero contribuir</a>
+        </div>
+
+        <div class="card">
+          <h2><span aria-hidden="true">🤝</span> Parcerias</h2>
+          <p>
+            Juntos podemos ir mais longe! Seja uma empresa ou parceiro da nossa
+            ONG e ajude a ampliar o impacto dos nossos projetos.
+          </p>
+          <a class="card_botao" href="https://wa.me/5511999999999" target="_blank" rel="noopener">Seja nosso parceiro</a>
+        </div>
+
+        <div class="card">
+          <h2><span aria-hidden="true">🎁</span> Doar itens</h2>
+          <p>
+            O que você não usa pode transformar uma vida! Doe roupas, alimentos
+            e materiais em bom estado. Sua solidariedade leva esperança e faz a
+            diferença na vida de quem mais precisa.
+          </p>
+          <a class="card_botao" href="#calendario">Quero fazer uma doação</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="Calendario" id="calendario">
+      <div class="Calendario_Campo">
+        <h2 class="Cal_Titulo">Calendário de Eventos</h2>
+        <p class="Cal_Subtitulo">
+          Passe o mouse sobre um dia para ver os eventos (no celular, toque no dia).
+        </p>
+
+        <div class="Cal_Layout">
+          <!-- Calendário -->
+          <div class="Cal_Card">
+            <div class="Cal_Header">
+              <button type="button" id="btn-anterior" class="Cal_Btn_Nav" aria-label="Mês anterior">‹</button>
+              <h3 id="mes-ano" class="Cal_Mes" aria-live="polite"></h3>
+              <button type="button" id="btn-proximo" class="Cal_Btn_Nav" aria-label="Próximo mês">›</button>
+            </div>
+
+            <div class="Cal_Legenda">
+              <span class="Cal_Legenda_Item"><span class="Cal_Dot Cal_Dot_Doacao"></span> Doação</span>
+              <span class="Cal_Legenda_Item"><span class="Cal_Dot Cal_Dot_Voluntario"></span> Voluntariado</span>
+              <span class="Cal_Legenda_Item"><span class="Cal_Dot Cal_Dot_Ambos"></span> Ambos</span>
+            </div>
+
+            <div class="Cal_Semana">
+              <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+            </div>
+
+            <div id="grid-dias" class="Cal_Grid"></div>
+          </div>
+
+          <!-- Detalhes do evento -->
+          <aside id="painel-detalhes" class="Cal_Painel" aria-live="polite">
+            <h3 id="titulo-painel" class="Cal_Painel_Titulo">Detalhes do evento</h3>
+            <p id="painel-vazio" class="Cal_Painel_Vazio">Passe o mouse sobre um dia para ver os eventos.</p>
+            <div id="painel-evento" class="Escondido">
+              <p id="evento-data" class="Cal_Evento_Data"></p>
+              <p id="evento-horario" class="Cal_Evento_Horario"></p>
+              <p id="evento-descricao" class="Cal_Evento_Descricao"></p>
+              <div id="evento-tipos" class="Cal_Evento_Tipos"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="Voluntario" id="voluntario">
+      <!-- CORRIGIDO AQUI: Trocado o '#' pelo link do Django -->
+      <a class="card_botao" href="{% url 'voluntario' %}">Quero ser voluntário</a>
+      <p class="Voluntario_Texto">Ao clicar, preencha um formulário para se inscrever.</p>
+    </section>
+
+    <section class="Proposito">
+      <p class="Proposito_Titulo">NOSSO PROPÓSITO</p>
+      <h2 class="Proposito_Frase">RESTAURAR VIDAS E TRANSFORMAR FUTUROS</h2>
+    </section>
+
+    <section class="Contato" id="contato">
+      <h2 class="Titulo_Contato">Meios de Comunicação</h2>
+      <ul class="Info_Contato">
+        <li><span aria-hidden="true">📍</span> Av. Sei lá, 123 - Bairro Dali - CEP 12345-678</li>
+        <li><span aria-hidden="true">📞</span> (11) 99999-9999</li>
+        <li><span aria-hidden="true">✉️</span> seila@gmail.com</li>
+      </ul>
+
+      <ul class="Redes_Sociais">
+        <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </section>
+
+    <footer class="Rodape">
+      <a class="Rodape_Logo" href="{% url 'home_publica' %}">
+        <img src="{% static 'administrador/img/Procred.png' %}" alt="Logotipo da PROCRED" />
+      </a>
+      <p class="Rodape_Frase">Transformando vidas através da solidariedade.</p>
+      <nav class="Rodape_Links" aria-label="Links do rodapé">
+        <p>Links:</p>
+        <ul>
+          <li><a href="#quem-somos">Quem somos</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#como-ajudar">Como ajudar</a></li>
+          <li><a href="#voluntario">Voluntariado</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <p class="Rodape_Copyright">© 2026 Nome da ONG — Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+      /* ---------- Carrossel de projetos ---------- */
+      const trilho = document.querySelector(".carrossel_trilho");
+      const slides = document.querySelectorAll(".slide");
+      const pontos = document.querySelectorAll(".ponto");
+      let atual = 0;
+
+      function mostrar(i) {
+        atual = (i + slides.length) % slides.length;
+        trilho.style.transform = `translateX(-${atual * 100}%)`;
+        pontos.forEach((p, n) => p.classList.toggle("ativo", n === atual));
+      }
+
+      document.querySelector(".seta_esq").onclick = () => mostrar(atual - 1);
+      document.querySelector(".seta_dir").onclick = () => mostrar(atual + 1);
+      pontos.forEach((p, n) => (p.onclick = () => mostrar(n)));
+
+      /* ---------- Calendário Integrado ---------- */
+      (function () {
+        const pad = n => String(n).padStart(2, '0');
+        let eventos = {}; // Vazio inicialmente, será populado pela API
+
+        const TEXTO_PADRAO = 'Passe o mouse sobre um dia para ver os eventos.';
+        const TEXTO_SEM_EVENTO = 'Sem eventos para esse dia.';
+
+        let mesExibido = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+        let dataSelecionada = null;
+
+        const $ = id => document.getElementById(id);
+        const gridDias = $('grid-dias');
+        const tituloMes = $('mes-ano');
+        const painel = $('painel-detalhes');
+        const painelVazio = $('painel-vazio');
+        const painelEvento = $('painel-evento');
+
+        // Conectar com a API pública do Django
+        async function carregarEventos() {
+            try {
+                const resposta = await fetch('/administrador/api/publica/eventos/');
+                const dados = await resposta.json();
+                
+                // Transforma o JSON do Django no formato esperado pelo front
+                dados.forEach(ev => {
+                    eventos[ev.data] = {
+                        nome: ev.nome_evento,
+                        descricao: ev.descricao,
+                        inicio: ev.horario_inicio,
+                        fim: ev.horario_fim,
+                        doacao: ev.aceita_doacao,
+                        voluntario: ev.aceita_voluntariado
+                    };
+                });
+            } catch (erro) {
+                console.error("Erro ao carregar eventos:", erro);
+            }
+        }
+
+        function chaveData(ano, mes, dia) {
+          return `${ano}-${pad(mes + 1)}-${pad(dia)}`;
+        }
+
+        function dataDaChave(chave) {
+          const [ano, mes, dia] = chave.split('-').map(Number);
+          return new Date(ano, mes - 1, dia);
+        }
+
+        function classeDoEvento(ev) {
+          if (ev.doacao && ev.voluntario) return 'Cal_Ambos';
+          if (ev.doacao) return 'Cal_Doacao';
+          if (ev.voluntario) return 'Cal_Voluntario';
+          return '';
+        }
+
+        function renderizarCalendario() {
+          const ano = mesExibido.getFullYear();
+          const mes = mesExibido.getMonth();
+
+          tituloMes.textContent = mesExibido.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+          gridDias.innerHTML = '';
+
+          const primeiroDiaSemana = new Date(ano, mes, 1).getDay();
+          const totalDias = new Date(ano, mes + 1, 0).getDate();
+
+          for (let i = 0; i < primeiroDiaSemana; i++) {
+            const vazio = document.createElement('div');
+            vazio.className = 'Cal_Dia Cal_Vazio';
+            gridDias.appendChild(vazio);
+          }
+
+          const hoje = new Date();
+          const chaveHoje = chaveData(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+
+          for (let dia = 1; dia <= totalDias; dia++) {
+            const chave = chaveData(ano, mes, dia);
+            const ev = eventos[chave];
+
+            const celula = document.createElement(ev ? 'button' : 'div');
+            celula.className = 'Cal_Dia';
+            celula.textContent = dia;
+
+            if (ev) {
+              celula.type = 'button';
+              celula.classList.add(classeDoEvento(ev));
+              celula.setAttribute('aria-label', `${dia}: ${ev.nome}`);
+              celula.addEventListener('focus', () => mostrarDia(chave));
+            } else {
+              celula.classList.add('Cal_Livre');
+            }
+
+            celula.addEventListener('mouseenter', () => mostrarDia(chave));
+            celula.addEventListener('click', () => selecionarDia(chave, celula));
+
+            if (chave === chaveHoje) celula.classList.add('Cal_Hoje');
+            if (chave === dataSelecionada) celula.classList.add('Cal_Selecionado');
+
+            gridDias.appendChild(celula);
+          }
+        }
+
+        function criarBadge(texto, classe) {
+          const span = document.createElement('span');
+          span.className = `Cal_Badge ${classe}`;
+          span.textContent = texto;
+          return span;
+        }
+
+        function mostrarDia(chave) {
+          const ev = eventos[chave];
+          if (ev) mostrarEvento(chave, ev);
+          else mostrarSemEvento(chave);
+        }
+
+        function mostrarEvento(chave, ev) {
+          const dataFormatada = dataDaChave(chave).toLocaleDateString('pt-BR', {
+            weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+          });
+
+          $('titulo-painel').textContent = ev.nome;
+          $('evento-data').textContent = dataFormatada;
+          $('evento-horario').textContent = (ev.inicio && ev.fim) ? `${ev.inicio} às ${ev.fim}` : '';
+          $('evento-descricao').textContent = ev.descricao || '';
+
+          const tipos = $('evento-tipos');
+          tipos.innerHTML = '';
+          if (ev.doacao) tipos.appendChild(criarBadge('Doação', 'Cal_Badge_Doacao'));
+          if (ev.voluntario) tipos.appendChild(criarBadge('Voluntariado', 'Cal_Badge_Voluntario'));
+
+          painelVazio.classList.add('Escondido');
+          painelEvento.classList.remove('Escondido');
+          painel.classList.add('Cal_Ativo');
+        }
+
+        function mostrarSemEvento(chave) {
+          $('titulo-painel').textContent = dataDaChave(chave).toLocaleDateString('pt-BR', {
+            day: 'numeric', month: 'long'
+          });
+          painelVazio.textContent = TEXTO_SEM_EVENTO;
+
+          painelEvento.classList.add('Escondido');
+          painelVazio.classList.remove('Escondido');
+          painel.classList.remove('Cal_Ativo');
+        }
+
+        function limparPainel() {
+          dataSelecionada = null;
+          $('titulo-painel').textContent = 'Detalhes do evento';
+          painelVazio.textContent = TEXTO_PADRAO;
+          painelEvento.classList.add('Escondido');
+          painelVazio.classList.remove('Escondido');
+          painel.classList.remove('Cal_Ativo');
+        }
+
+        function restaurarPainel() {
+          if (dataSelecionada) mostrarDia(dataSelecionada);
+          else limparPainel();
+        }
+
+        function selecionarDia(chave, celula) {
+          const anterior = gridDias.querySelector('.Cal_Selecionado');
+          if (anterior) anterior.classList.remove('Cal_Selecionado');
+          celula.classList.add('Cal_Selecionado');
+          dataSelecionada = chave;
+          mostrarDia(chave);
+        }
+
+        gridDias.addEventListener('mouseleave', restaurarPainel);
+        gridDias.addEventListener('focusout', restaurarPainel);
+
+        $('btn-anterior').addEventListener('click', () => {
+          mesExibido = new Date(mesExibido.getFullYear(), mesExibido.getMonth() - 1, 1);
+          limparPainel();
+          renderizarCalendario();
+        });
+
+        $('btn-proximo').addEventListener('click', () => {
+          mesExibido = new Date(mesExibido.getFullYear(), mesExibido.getMonth() + 1, 1);
+          limparPainel();
+          renderizarCalendario();
+        });
+
+        // Inicializa buscando os dados da API antes de renderizar
+        carregarEventos().then(() => {
+            renderizarCalendario();
+        });
+      })();
+    </script>
+  </body>
+</html>

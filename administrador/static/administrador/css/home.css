@@ -1,0 +1,807 @@
+:root {
+    --verde: #285A45;
+    --verde-escuro: #1d4434;
+    --fundo: #E6E9DF;
+    --texto: #1f2d26;
+    --sage: #a3b5a3; /* estava sendo usada mas nunca foi definida */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-size: 20px;
+}
+
+/* Evita que o menu fixo cubra o título ao clicar nos links do menu */
+.Quem_Somos,
+.projetos,
+.como-ajudar,
+.Calendario,
+.Voluntario,
+.Contato {
+    scroll-margin-top: 140px;
+}
+
+/* ---------- Topo / menu ---------- */
+.Topo {
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.Topo .logotipo {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--verde);
+    background: white;
+    overflow: hidden;
+}
+
+.Topo .logotipo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.Topo .logotipo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Topo .sumário {
+    background-color: var(--verde);
+    opacity: 0.95;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    flex: 1;
+    margin: 0 20px 0 5%;
+    padding: 0 20px;
+}
+
+.List_Sumari {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.Topo .sumário a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.Topo .sumário a:hover,
+.Topo .sumário a:focus-visible {
+    border-bottom-color: white;
+    outline: none;
+}
+
+/* ---------- Quem somos ---------- */
+.Quem_Somos {
+    position: relative; /* o título é posicionado em relação a esta caixa */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.Quem_Somos img {
+    width: 100%;
+    max-width: 90%;
+    height: 500px;
+    object-fit: cover; /* Corta e preenche o espaço sem distorcer */
+}
+
+.Quem_Somos h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centraliza na imagem */
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 50px;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.Descricao {
+    background-color: #A7B7A6;
+    color: #203D33;
+    font-size: 25px;
+    text-align: center;
+    margin: 20px auto 0;
+    width: 90%;
+    padding: 20px 24px;
+}
+
+/* ---------- Botões flutuantes ---------- */
+.botoes_dz {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    position: fixed;
+    z-index: 2;
+    right: 20px;
+    bottom: 20px;
+}
+
+.botoes_dz .whatsapp img {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #25D366;
+}
+
+.botoes_dz .doe_agora a {
+    background-color: var(--verde);
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.botoes_dz .doe_agora a:hover {
+    background-color: var(--verde-escuro);
+}
+
+/* ---------- Projetos / carrossel ---------- */
+/* ---------- Projetos / carrossel ---------- */
+.projetos {
+    padding: 40px 0 60px;
+}
+
+/* Caixa do título */
+.projetos_titulo {
+    background-color: var(--sage);
+    color: #203D33;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    padding: 24px 20px;
+    text-align: center;
+}
+
+.projetos_titulo h2 {
+    margin: 0 0 10px;
+    font-size: 1.8rem;
+}
+
+.projetos_titulo p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Setas + moldura */
+.carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 24px;
+}
+
+.carrossel_moldura {
+    flex: 1;
+    min-width: 0;
+    max-width: 1000px;
+    background-color: var(--sage);
+    border-radius: 28px;
+    padding: 14px 14px 18px;
+}
+
+.carrossel_janela {
+    overflow: hidden; /* esconde os slides fora de vista */
+}
+
+.carrossel_trilho {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.slide {
+    flex: 0 0 100%; /* cada slide ocupa 100% da janela */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.slide img,
+.slide video {
+    display: block;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+/* Legenda em "pílula" branca */
+.slide_legenda {
+    flex: 1;
+    margin: 0;
+    padding: 14px 24px;
+    background: white;
+    color: var(--texto);
+    border-radius: 24px;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Setas (triângulos) */
+.seta {
+    width: 36px;
+    height: 56px;
+    border: none;
+    background-color: var(--sage);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+}
+
+.seta_esq { clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+.seta_dir { clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.seta:hover { background-color: var(--verde); }
+
+.seta:focus-visible {
+    outline: 3px solid #ffd54a;
+    outline-offset: 3px;
+}
+
+/* Bolinhas */
+.pontos {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.ponto {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--verde);
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.ponto.ativo { opacity: 1; }
+
+/* ---------- Como ajudar ---------- */
+.como-ajudar {
+    text-align: center;
+    padding: 64px 24px;
+}
+
+.como-ajudar h1 {
+    margin: 0 0 8px;
+    font-size: 2.2rem;
+    color: var(--verde);
+}
+
+.como-ajudar > p {
+    margin: 0;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 40px auto 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--sage);
+    color: var(--texto);
+    border-radius: 24px;
+    padding: 32px 22px 28px;
+}
+
+.card h2 {
+    margin: 0 0 20px;
+    font-size: 1.15rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.card p {
+    margin: 0 0 28px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* margin-top: auto alinha os 4 botões na base dos cards */
+.card_botao {
+    margin-top: auto;
+    padding: 12px 20px;
+    background: var(--verde);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+
+.card_botao:hover { background: var(--verde-escuro); }
+
+.card_botao:focus-visible {
+    outline: 3px solid #ffd54a;
+    outline-offset: 3px;
+}
+
+/* ---------- Calendário ---------- */
+.Calendario {
+    --cal-verde: #285A45;
+    --cal-azul: #2f6fa3;
+    --cal-ambos: #b7791f;
+    --cal-texto: #1f2d26;
+    --cal-suave: #5b6b62;
+    --cal-borda: #c5cdbf;
+    padding: 60px 24px 20px;
+}
+
+.Calendario_Campo {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.Escondido { display: none !important; }
+
+.Cal_Titulo {
+    margin: 0 0 8px;
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--cal-verde);
+}
+
+.Cal_Subtitulo {
+    margin: 0 0 32px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--cal-suave);
+}
+
+.Cal_Layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 24px;
+    align-items: start;
+}
+
+/* Cartões (calendário e painel) */
+.Cal_Card,
+.Cal_Painel {
+    min-width: 0;
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(40, 90, 69, 0.15);
+}
+
+/* Cabeçalho do mês */
+.Cal_Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.Cal_Mes {
+    margin: 0;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    text-align: center;
+    color: var(--cal-texto);
+}
+
+.Cal_Btn_Nav {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-size: 1.4rem;
+    color: var(--cal-verde);
+    background: #fafbf8;
+    border: 2px solid var(--cal-borda);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.Cal_Btn_Nav:hover {
+    background: #e6e9df;
+    border-color: var(--cal-verde);
+}
+
+/* Legenda */
+.Cal_Legenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    color: var(--cal-suave);
+}
+
+.Cal_Legenda_Item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.Cal_Dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.Cal_Dot_Doacao { background: var(--cal-verde); }
+.Cal_Dot_Voluntario { background: var(--cal-azul); }
+.Cal_Dot_Ambos { background: var(--cal-ambos); }
+
+/* Dias da semana e grade */
+.Cal_Semana,
+.Cal_Grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.Cal_Semana {
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--cal-suave);
+}
+
+.Cal_Grid { gap: 6px; }
+
+.Cal_Dia {
+    min-width: 0;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-size: 0.95rem;
+    color: var(--cal-suave);
+    background: #f1f3ec;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: default;
+    transition: filter 0.2s;
+}
+
+.Cal_Vazio {
+    background: transparent;
+    border: none;
+}
+
+/* Dias com evento (clicáveis) */
+.Cal_Doacao,
+.Cal_Voluntario,
+.Cal_Ambos {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.Cal_Doacao { background: rgba(40, 90, 69, 0.12); color: var(--cal-verde); border-color: var(--cal-verde); }
+.Cal_Voluntario { background: rgba(47, 111, 163, 0.12); color: var(--cal-azul); border-color: var(--cal-azul); }
+.Cal_Ambos { background: rgba(183, 121, 31, 0.14); color: var(--cal-ambos); border-color: var(--cal-ambos); }
+
+.Cal_Doacao:hover,
+.Cal_Livre:hover { background: #e6e9df; };
+.Cal_Voluntario:hover,
+.Cal_Ambos:hover { filter: brightness(0.92); }
+
+.Cal_Hoje { box-shadow: inset 0 0 0 2px var(--cal-suave); }
+.Cal_Selecionado { outline: 3px solid var(--cal-verde); outline-offset: 2px; }
+
+.Cal_Dia:focus-visible,
+.Cal_Btn_Nav:focus-visible {
+    outline: 3px solid #ffd54a;
+    outline-offset: 2px;
+}
+
+/* Painel de detalhes */
+.Cal_Painel {
+    position: sticky;
+    top: 150px;
+    border: 2px solid transparent;
+}
+
+.Cal_Ativo { border-color: var(--cal-verde); }
+
+.Cal_Painel_Titulo {
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    font-size: 1.15rem;
+    color: var(--cal-verde);
+    border-bottom: 1px solid var(--cal-borda);
+}
+
+.Cal_Painel_Vazio {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--cal-suave);
+}
+
+.Cal_Evento_Data {
+    margin: 0 0 4px;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    color: var(--cal-suave);
+}
+
+.Cal_Evento_Horario {
+    margin: 0 0 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cal-verde);
+}
+
+.Cal_Evento_Descricao {
+    margin: 0 0 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.Cal_Evento_Tipos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.Cal_Badge {
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 2px solid transparent;
+    border-radius: 999px;
+}
+
+.Cal_Badge_Doacao { background: rgba(40, 90, 69, 0.12); color: var(--cal-verde); border-color: var(--cal-verde); }
+.Cal_Badge_Voluntario { background: rgba(47, 111, 163, 0.12); color: var(--cal-azul); border-color: var(--cal-azul); }
+
+/* ---------- Seja voluntário ---------- */
+.Voluntario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px 60px;
+    text-align: center;
+}
+
+.Botao_Voluntario {
+    display: inline-block;
+    min-width: 280px;
+    padding: 16px 40px;
+    background: var(--sage);
+    color: var(--texto);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 16px;
+    transition: background 0.2s;
+}
+
+.Botao_Voluntario:hover {
+    background: var(--verde);
+    color: white;
+}
+
+.Botao_Voluntario:focus-visible,
+.Redes_Sociais a:focus-visible,
+.Rodape a:focus-visible {
+    outline: 3px solid #ffd54a;
+    outline-offset: 3px;
+}
+
+.Voluntario_Texto {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* ---------- Contato ---------- */
+.Contato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 40px 24px 60px;
+}
+
+.Titulo_Contato {
+    margin: 0;
+    padding: 14px 50px;
+    background: var(--sage);
+    color: var(--texto);
+    font-size: 1.2rem;
+    border-radius: 16px;
+}
+
+.Info_Contato {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1rem;
+}
+
+.Redes_Sociais {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.Redes_Sociais a {
+    display: grid;
+    place-items: center;
+    width: 90px;
+    height: 90px;
+    background: var(--sage);
+    color: var(--texto);
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+
+.Redes_Sociais a:hover {
+    background: var(--verde);
+    color: white;
+}
+
+/* ---------- Nosso propósito ---------- */
+.Proposito {
+    background: #1f1f1f;
+    color: white;
+    text-align: center;
+    padding: 28px 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Proposito_Titulo {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.Proposito_Frase {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* ---------- Rodapé ---------- */
+.Rodape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 50px 24px 30px;
+    text-align: center;
+}
+
+.Rodape_Logo img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Rodape_Frase,
+.Rodape_Links p,
+.Rodape_Copyright {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.Rodape_Links ul {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.Rodape_Links a {
+    color: var(--texto);
+    text-decoration: none;
+}
+
+.Rodape_Links a:hover {
+    color: var(--verde);
+    text-decoration: underline;
+}
+
+.Rodape_Copyright { margin-top: 20px; }
+
+/* ============================================================
+   RESPONSIVO (todas as regras de tela pequena ficam juntas, no fim)
+   ============================================================ */
+@media (max-width: 900px) {
+    .carrossel { padding: 0 8px; gap: 8px; }
+    .seta { width: 24px; height: 40px; }
+    .carrossel_moldura { padding: 10px 10px 14px; border-radius: 22px; }
+    .slide img, .slide video { height: 240px; }
+    .slide_legenda { font-size: 0.9rem; padding: 12px 16px; }
+}
+
+@media (max-width: 560px) {
+    .Botao_Voluntario {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .Titulo_Contato {
+        padding: 14px 24px;
+        text-align: center;
+    }
+
+    .Proposito_Frase { font-size: 1.3rem; }
+}
+
+@media (max-width: 480px) {
+    .cards { grid-template-columns: 1fr; }
+
+    .Cal_Titulo { font-size: 1.8rem; }
+    .Cal_Card { padding: 16px; }
+    .Cal_Mes { font-size: 1rem; }
+    .Cal_Dia { font-size: 0.8rem; }
+}
