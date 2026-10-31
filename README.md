@@ -1,54 +1,61 @@
 # 🌱 Painel Administrativo ONG
 
-**Versão 2.0.0**
+**Versão 2.1.0**
 
-Sistema administrativo interno para ONG, com painel protegido por login nativo, calendário editável de eventos, API pública para integração com o site principal e interface moderna em tema dark com detalhes neon roxo.
+Sistema administrativo interno e site institucional para ONG, com painel protegido, calendário de eventos, integração com API pública e fluxos de contato via WhatsApp e PIX. Interface moderna em tema dark com detalhes neon roxo no admin, e design clean no site público.
 
 ---
 
 ## 👨‍💻 Desenvolvimento
 
-Este projeto está sendo desenvolvido em equipe (3 integrantes), com auxílio de ferramentas de inteligência artificial para:
+Este projeto está sendo desenvolvido em equipe (3 integrantes), com auxílio de ferramentas de inteligência artificial (DeepSeek) para:
+
 - Auxílio na geração e boas práticas de código Python/Django.
 - Documentação e comentários explicativos.
 - Depuração e correção de bugs.
-- Criação do tema visual CSS.
+- Criação dos temas visuais (Dark/Neon no admin e Clean no público).
 
-> **Nota de Arquitetura:** O código gerado por IA passou por uma auditoria e refatoração profunda para garantir segurança (uso do Auth nativo do Django) e organização (separação de views e criação de API RESTful).
+> **Nota de Arquitetura:** O código gerado por IA passou por uma auditoria e refatoração profunda para garantir segurança (uso do Auth nativo do Django) e organização (separação de views, criação de API RESTful e lógica de redirecionamento externo).
 
 ---
 
 ## ✨ Funcionalidades
 
-### 🔐 Sistema de Login e Segurança
-- **Autenticação Nativa:** Uso do sistema de usuários nativo do Django (`django.contrib.auth`). Senhas são criptografadas automaticamente (hash nativo).
-- **Proteção de Rotas:** Todas as views do painel e APIs de edição estão protegidas com o decorator `@login_required`.
-- **CSRF Token:** Proteção nativa do Django ativada em todas as requisições POST (tanto nos formulários HTML quanto no JavaScript via `fetch`).
+### 🔐 Sistema de Login e Segurança (Admin)
+
+- **Autenticação Nativa:** Uso do sistema de usuários nativo do Django (`django.contrib.auth`). Senhas criptografadas automaticamente.
+- **Proteção de Rotas:** Views do painel e APIs de edição protegidas com `@login_required`.
+- **CSRF Token:** Proteção ativada em todas as requisições POST.
 - **Logout Seguro:** Implementado via método POST (exigência das versões recentes do Django).
 
 ### 📊 Painel Administrativo
+
 - Tela inicial com boas-vindas ao administrador.
 - Topbar com navegação entre seções.
 - Card de acesso rápido ao calendário.
 
-### 📅 Calendário Editável
+### 📅 Calendário Editável (Admin)
+
 - Visualização mensal com navegação entre meses.
 - Criação, edição e exclusão de eventos por clique no dia.
-- **Cores por categoria:**
-  - 🟢 Verde: Aceita doação
-  - 🔵 Azul: Aceita voluntariado
-  - 🟣 Roxo: Aceita ambos
+- **Cores por categoria:** 🟢 Verde (Doação), 🔵 Azul (Voluntariado), 🟣 Roxo (Ambos).
 - Painel lateral de edição com campos de texto, data, horário e flags de categoria.
 
-### 🌐 API Pública (Integração)
-- Rota pública e otimizada (`GET /administrador/api/publica/eventos/`) que retorna apenas eventos futuros.
-- Retorno em formato JSON, pronto para ser consumido pelo site principal (front-end institucional).
+### 🌐 Site Institucional (Público)
 
-### 🎨 Design
-- Tema dark com accent neon roxo (`#a855f7`).
-- Efeitos de glow sutis em hover/focus.
-- Cards com borda neon animada.
-- Layout responsivo (mobile-friendly) e tipografia Inter.
+- **Home:** Design responsivo, carrossel de projetos, seção "Quem Somos" e links de navegação.
+- **Calendário Público:** Integrado via API, exibe apenas eventos futuros para os visitantes.
+- **Voluntariado:** Formulário com nome, telefone e seleção de evento (puxado da API). O envio redireciona o usuário diretamente para o WhatsApp da ONG com a mensagem pré-formatada.
+- **Doação:** Página dedicada com chave PIX para cópia rápida.
+
+---
+
+## 🏗️ Arquitetura e Banco de Dados
+
+Para manter o repositório limpo, as imagens dos diagramas (Arquitetura do Sistema e DER) estão disponíveis na pasta [`/docs`](./docs) deste projeto.
+
+- **Diagrama de Arquitetura:** Explica o fluxo entre Apresentação, Negócio, Dados e Serviços Externos.
+- **Diagrama de Banco (DER):** Ilustra as tabelas, chaves primárias e relacionamentos (Eventos, Inscrições, Admin, etc.).
 
 ---
 
@@ -57,13 +64,12 @@ Este projeto está sendo desenvolvido em equipe (3 integrantes), com auxílio de
 | Tecnologia | Uso |
 |------------|-----|
 | Python 3.11+ | Linguagem principal |
-| Django 4.2+ | Framework web |
+| Django 6.1 | Framework web |
 | MySQL 8.4 | Banco de dados principal |
 | PyMySQL | Driver de conexão do banco |
 | python-dotenv | Proteção de credenciais (.env) |
 | HTML5 + CSS3 | Interface |
-| JavaScript (puro) | Interatividade do calendário |
-| Inter (Google Fonts) | Tipografia |
+| JavaScript (puro) | Interatividade (calendário, carrossel, fetch API) |
 | Git + GitHub | Versionamento |
 
 ---
@@ -71,9 +77,9 @@ Este projeto está sendo desenvolvido em equipe (3 integrantes), com auxílio de
 ## 🚀 Instalação e Configuração
 
 ### Pré-requisitos
+
 - Python 3.11 ou superior
 - MySQL Server 8.4+ (em execução local)
-- MySQL Workbench (opcional)
 - Git
 
 ### Passo a passo
@@ -94,15 +100,17 @@ pip install -r requirements.txt
 ```
 
 ### Configuração do Banco e Segurança
+
 O projeto utiliza variáveis de ambiente para proteger os dados do banco.
 
-1. Abra o `.env` e preencha com as credenciais do seu MySQL local:
+1. Renomeie o arquivo `.env.example` para `.env`.
+2. Abra o `.env` e preencha com as credenciais do seu MySQL local:
 
 ```env
 DB_NAME=projeto_ong
 DB_USER=projeto
 DB_PASSWORD=projeto
-DB_HOST=localhost
+DB_HOST=127.0.0.1
 DB_PORT=3306
 ```
 
@@ -122,41 +130,48 @@ python manage.py migrate
 ```
 
 ### 👤 Criar Administrador (Superusuário)
-Como o sistema agora utiliza o Auth nativo do Django, a criação do usuário administrador é feita pelo próprio framework. Para criar o primeiro acesso, rode no terminal (com a `venv` ativa):
+
+O painel usa o sistema de autenticação nativo do Django. Para criar o primeiro acesso, rode:
 
 ```bash
 python manage.py createsuperuser
 ```
+
 O terminal pedirá um nome de usuário, e-mail (opcional) e senha.
 
 ### ▶️ Executar o Sistema
+
 ```bash
 python manage.py runserver
 ```
-Acesse no navegador: `http://127.0.0.1:8000/administrador/login/`
+
+Acesse no navegador:
+- **Site Público:** http://127.0.0.1:8000/
+- **Painel Admin:** http://127.0.0.1:8000/administrador/login/
 
 ---
 
 ## 🔗 Rotas do Sistema
 
 ### Painel e Páginas (HTML)
+
 | Rota | Descrição | Proteção |
 |------|-----------|----------|
+| `/` | Home do site público | Pública |
+| `/pagamento/` | Página de doação (PIX) | Pública |
+| `/voluntario/` | Formulário de voluntariado (redireciona pro WhatsApp) | Pública |
 | `/administrador/login/` | Tela de login | Pública |
 | `/administrador/painel/` | Painel principal | `@login_required` |
 | `/administrador/calendario/` | Calendário de eventos | `@login_required` |
 
-### APIs do Calendário (JSON) - Restritas
+### APIs (JSON)
+
 | Método | Rota | Descrição | Proteção |
 |--------|------|-----------|----------|
-| `GET` | `/administrador/api/eventos/` | Lista todos os eventos | `@login_required` |
+| `GET` | `/administrador/api/eventos/` | Lista todos os eventos (Admin) | `@login_required` |
 | `POST` | `/administrador/api/evento/salvar/` | Cria ou atualiza evento | `@login_required` + CSRF |
 | `POST` | `/administrador/api/evento/excluir/<id>/` | Exclui evento | `@login_required` + CSRF |
-
-### API Pública (JSON) - Integração
-| Método | Rota | Descrição | Proteção |
-|--------|------|-----------|----------|
-| `GET` | `/administrador/api/publica/eventos/` | Lista eventos futuros para o site principal | Pública (sem login) |
+| `GET` | `/administrador/api/publica/eventos/` | Lista eventos futuros (Público) | Pública (sem login) |
 
 ---
 
@@ -166,15 +181,19 @@ Acesse no navegador: `http://127.0.0.1:8000/administrador/login/`
 Meu-projeto/
 ├── administrador/
 │   ├── migrations/
-│   ├── templates/administrador/   (login.html, painel.html, calendario.html)
-│   ├── static/administrador/      (css/, js/)
+│   ├── templates/
+│   │   ├── administrador/         (login.html, painel.html, calendario.html)
+│   │   └── site_publico/          (home.html, pagamento.html, voluntario.html)
+│   ├── static/administrador/      (css/, js/, img/)
 │   ├── views/                     (Pasta de views modularizadas)
 │   │   ├── __init__.py
-│   │   ├── paginas.py             (Views HTML)
+│   │   ├── paginas.py             (Views HTML e lógica do WhatsApp)
 │   │   └── api.py                 (APIs JSON)
 │   ├── admin.py
-│   ├── models.py                  (Apenas model Evento)
-│   ├── urls.py
+│   ├── forms.py                   (UserForm para validação)
+│   ├── models.py                  (Evento, Voluntario, Inscricao, etc.)
+│   └── urls.py
+├── docs/                          (Pasta contendo as imagens dos diagramas)
 ├── ong/
 │   ├── settings.py
 │   └── urls.py
@@ -190,9 +209,9 @@ Meu-projeto/
 ## 🔐 Segurança
 
 - **Credenciais Protegidas:** Senhas do banco movidas para o arquivo `.env` (não versionado no Git).
-- **Senhas com Hash:** Gerenciadas nativamente pelo sistema de autenticação do Django (PBKDF2).
+- **Senhas com Hash:** Gerenciadas nativamente pelo sistema de autenticação do Django.
 - **CSRF Ativado:** Proteção em todas as requisições POST.
-- **Rotas Blindadas:** Uso generalizado de `@login_required` para impedir acesso não autorizado às views e APIs de edição.
+- **Rotas Blindadas:** Uso generalizado de `@login_required` para impedir acesso não autorizado ao painel.
 
 ---
 
@@ -204,13 +223,14 @@ Meu-projeto/
 - `refactor/*`: Refatorações e melhorias de arquitetura.
 
 ### Padrão de commits
+
 | Prefixo | Uso |
 |---------|-----|
 | `feat:` | Nova funcionalidade |
 | `fix:` | Correção de bug |
 | `style:` | Ajuste visual/CSS |
 | `docs:` | Documentação |
-| `refactor:` | Refatoração de código sem mudar comportamento |
+| `refactor:` | Refatoração de código |
 | `chore:` | Tarefas diversas |
 
 ---
@@ -219,10 +239,10 @@ Meu-projeto/
 
 | Integrante | Responsabilidade |
 |------------|------------------|
-| **ShiHiro231** | Back-end Django, Sistema de Login |
-| **chandyzera** | Painel admin, calendário, CSS, integração JS, Refatoração de Segurança e API Pública |
-| **THIAGO NESI NUNES** | Modelos e banco de dados |
+| **ShiHiro231** | Back-end Django, Refatoração de Segurança e API Pública |
+| **chandyzera** | Painel admin, calendário, tema neon e integração JS |
+| **THIAGO NESI NUNES** | Modelos, banco de dados e diagramas |
 
 ---
 
-<p align="center">Desenvolvido com 💜 para uma causa maior.</p>
+Desenvolvido com 💜 para uma causa maior.
