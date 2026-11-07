@@ -3,6 +3,8 @@
     --verde-escuro: #1d4434;
     --fundo: #E6E9DF;
     --texto: #1f2d26;
+    --fonte-titulo: "Nunito Sans", sans-serif;
+    --fonte-texto: "Inter", sans-serif;
 }
 
 *, *::before, *::after {
@@ -10,11 +12,17 @@
 }
 
 body {
+    font-family: var(--fonte-texto);
     margin: 0;
     padding: 0;
     background-color: var(--fundo);
     color: var(--texto);
     font-size: 20px;
+}
+
+h1, h2, h3,
+.Topo .sumário a {
+    font-family: var(--fonte-titulo);
 }
 
 .Topo {
@@ -112,65 +120,124 @@ body {
     line-height: 1.5;
 }
 
-.Form_Pagamento {
-    width: 100%;
-    max-width: 480px;
+.pix-card {
+  background: #ffffff;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.pix-card h2 {
+  color: #2d5a47;
+  margin-bottom: 8px;
+}
+
+.pix-descricao {
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.pix-chave {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #f9f9f7;
+  border: 2px dashed #2d5a47;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.pix-chave span {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #1f3d30;
+  word-break: break-all;
+  text-align: left;
+}
+
+.pix-chave button {
+  background: #2d5a47;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.pix-chave button:hover {
+  background: #244a3a;
+}
+
+.pix-chave button.copiado {
+  background: #3f8a63;
+}
+
+.pix-aviso {
+  margin-top: 14px;
+  min-height: 1.2em;
+  color: #2d5a47;
+  font-size: 0.95rem;
+}
+
+.Escondido { display: none; }
+
+.btn-qrcode {
+    margin-top: 20px;
+    padding: 12px 24px;
     background: white;
-    padding: 32px;
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(40, 90, 69, 0.15);
-}
-
-.Form_Pagamento form {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.Form_Pagamento label {
-    margin-top: 10px;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.Form_Pagamento input {
-    width: 100%;
-    padding: 12px 14px;
+    color: var(--verde);
     font: inherit;
     font-size: 1rem;
-    border: 2px solid #c5cdbf;
-    border-radius: 10px;
-    background: #fafbf8;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.Form_Pagamento input:focus {
-    outline: none;
-    border-color: var(--verde);
-    box-shadow: 0 0 0 3px rgba(40, 90, 69, 0.2);
-}
-
-.Form_Pagamento button {
-    margin-top: 28px;
-    padding: 14px;
-    font: inherit;
-    font-size: 1.1rem;
     font-weight: 700;
-    color: white;
-    background: var(--verde);
-    border: none;
+    border: 2px solid var(--verde);
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 
-.Form_Pagamento button:hover {
-    background: var(--verde-escuro);
+.btn-qrcode:hover {
+    background: var(--verde);
+    color: white;
 }
 
-.Form_Pagamento button:focus-visible {
-    outline: 3px solid #ffd54a;
-    outline-offset: 2px;
+.qr-box {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.qr-img {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    margin: 0 auto 12px;
+    padding: 12px;
+    background: white;
+    border: 2px solid var(--verde);
+    border-radius: 16px;
+}
+
+.qr-texto {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 500px) {
+  .pix-chave {
+    flex-direction: column;
+  }
+  .pix-chave button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 900px) {

@@ -1,9 +1,21 @@
+section[id] {
+    scroll-margin-top: 140px;
+}
 :root {
     --verde: #285A45;
     --verde-escuro: #1d4434;
     --fundo: #E6E9DF;
     --texto: #1f2d26;
     --sage: #a3b5a3; /* estava sendo usada mas nunca foi definida */
+    --fonte-titulo: "Nunito Sans", sans-serif;
+    --fonte-texto: "Inter", sans-serif;
+}
+
+h1, h2, h3,
+.Topo .sumário a,
+.card_botao,
+.Botao_Voluntario {
+    font-family: var(--fonte-titulo);
 }
 
 *, *::before, *::after {
@@ -15,6 +27,7 @@ html {
 }
 
 body {
+    font-family: var(--fonte-texto);
     margin: 0;
     padding: 0;
     background-color: var(--fundo);
@@ -106,42 +119,81 @@ body {
     outline: none;
 }
 
-/* ---------- Quem somos ---------- */
 .Quem_Somos {
-    position: relative; /* o título é posicionado em relação a esta caixa */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 150px;
+    position: relative;
+    width: 90%;
+    height: clamp(320px, 45vw, 520px);
+    margin: 150px auto 0;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(40, 90, 69, 0.25);
 }
 
 .Quem_Somos img {
+    display: block;
     width: 100%;
-    max-width: 90%;
-    height: 500px;
-    object-fit: cover; /* Corta e preenche o espaço sem distorcer */
+    height: 100%;
+    object-fit: cover;
+}
+
+.Quem_Somos::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(29, 68, 52, 0.9) 0%,
+        rgba(29, 68, 52, 0.4) 45%,
+        rgba(29, 68, 52, 0) 100%
+    );
+}
+
+.Quem_Somos_Texto {
+    position: absolute;
+    z-index: 1;
+    left: clamp(20px, 5vw, 60px);
+    right: 20px;
+    bottom: clamp(20px, 4vw, 48px);
+    color: #fff;
 }
 
 .Quem_Somos h2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* centraliza na imagem */
+    margin: 0 0 12px;
+    padding-left: 16px;
+    border-left: 6px solid var(--sage);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.Quem_Somos_Frase {
     margin: 0;
-    color: #FFFFFF;
-    font-size: 50px;
-    text-align: center;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    padding-left: 22px;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    opacity: 0.95;
 }
 
 .Descricao {
-    background-color: #A7B7A6;
-    color: #203D33;
-    font-size: 25px;
-    text-align: center;
-    margin: 20px auto 0;
     width: 90%;
-    padding: 20px 24px;
+    margin: 24px auto 0;
+    padding: 36px clamp(20px, 4vw, 56px);
+    background: #f4f6f0;
+    color: var(--texto);
+    border-left: 8px solid var(--verde);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(40, 90, 69, 0.12);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.Descricao p {
+    margin: 0 0 1.2em;
+}
+
+.Descricao p:last-child {
+    margin-bottom: 0;
 }
 
 /* ---------- Botões flutuantes ---------- */
@@ -183,7 +235,7 @@ body {
 
 /* Caixa do título */
 .projetos_titulo {
-    background-color: var(--sage);
+    background-color: var(--fundo);
     color: #203D33;
     border-radius: 25px;
     width: 90%;
@@ -216,7 +268,7 @@ body {
     flex: 1;
     min-width: 0;
     max-width: 1000px;
-    background-color: var(--sage);
+    background-color: #f4f6f0;
     border-radius: 28px;
     padding: 14px 14px 18px;
 }
@@ -328,7 +380,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: var(--sage);
+    background: #f4f6f0;
     color: var(--texto);
     border-radius: 24px;
     padding: 32px 22px 28px;
@@ -623,8 +675,8 @@ body {
     display: inline-block;
     min-width: 280px;
     padding: 16px 40px;
-    background: var(--sage);
-    color: var(--texto);
+    background: var(--verde);
+    color: #FFFFFF;
     font-size: 1.3rem;
     font-weight: 700;
     text-decoration: none;
@@ -633,7 +685,7 @@ body {
 }
 
 .Botao_Voluntario:hover {
-    background: var(--verde);
+    background: var(--verde-escuro);
     color: white;
 }
 
@@ -654,55 +706,81 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    gap: 32px;
     padding: 40px 24px 60px;
 }
 
 .Titulo_Contato {
     margin: 0;
     padding: 14px 50px;
-    background: var(--sage);
-    color: var(--texto);
-    font-size: 1.2rem;
+    background: var(--fundo);
+    color: var(--verde);
+    font-size: 2.2rem;
     border-radius: 16px;
 }
 
-.Info_Contato {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font-size: 1rem;
-}
-
-.Redes_Sociais {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.Contato_Conteudo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16px;
+    align-items: center;
+    gap: 32px 56px;
+    width: 100%;
+    max-width: 900px;
 }
 
-.Redes_Sociais a {
+/* Cartão com os dados de contato */
+.Info_Contato {
+    list-style: none;
+    margin: 0;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: #f4f6f0;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(40, 90, 69, 0.12);
+    font-size: 1rem;
+}
+
+.Info_Contato li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.Contato_Icone {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
     display: grid;
     place-items: center;
-    width: 90px;
-    height: 90px;
     background: var(--sage);
-    color: var(--texto);
-    font-size: 0.85rem;
-    text-decoration: none;
     border-radius: 50%;
-    transition: background 0.2s, color 0.2s;
+    font-size: 1.1rem;
+}
+
+/* Redes sociais */
+.Redes_Sociais a {
+    display: block;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    background: var(--sage);
+    border-radius: 50%;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.Redes_Sociais img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .Redes_Sociais a:hover {
     background: var(--verde);
-    color: white;
+    transform: translateY(-3px);
 }
 
 /* ---------- Nosso propósito ---------- */
@@ -728,12 +806,27 @@ body {
 
 /* ---------- Rodapé ---------- */
 .Rodape {
+    background: var(--verde);
+    color: white;
+    padding: 48px 24px 24px;
+}
+
+.Rodape_Conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.Rodape_Marca {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 50px 24px 30px;
-    text-align: center;
+    align-items: flex-start;
+    gap: 14px;
+    max-width: 320px;
 }
 
 .Rodape_Logo img {
@@ -741,40 +834,66 @@ body {
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    border: 2px solid white;
+    background: white;
     object-fit: cover;
 }
 
-.Rodape_Frase,
-.Rodape_Links p,
-.Rodape_Copyright {
+.Rodape_Frase {
     margin: 0;
     font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.Rodape_Links p {
+    margin: 0 0 10px;
+    font-family: var(--fonte-titulo);
+    font-size: 1.05rem;
+    font-weight: 700;
 }
 
 .Rodape_Links ul {
     list-style: none;
-    margin: 4px 0 0;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
 }
 
 .Rodape_Links a {
-    color: var(--texto);
+    color: white;
+    font-size: 0.95rem;
     text-decoration: none;
+    opacity: 0.9;
 }
 
 .Rodape_Links a:hover {
-    color: var(--verde);
+    opacity: 1;
     text-decoration: underline;
 }
 
-.Rodape_Copyright { margin-top: 20px; }
+.Rodape_Copyright {
+    max-width: 1000px;
+    margin: 32px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    font-size: 0.85rem;
+}
 
 /* ============================================================
    RESPONSIVO (todas as regras de tela pequena ficam juntas, no fim)
    ============================================================ */
+
+/* no celular as linhas são curtas e o justify cria espaços estranhos */
+@media (max-width: 600px) {
+    .Descricao {
+        text-align: left;
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 900px) {
     .carrossel { padding: 0 8px; gap: 8px; }
     .seta { width: 24px; height: 40px; }
@@ -795,6 +914,15 @@ body {
     }
 
     .Proposito_Frase { font-size: 1.3rem; }
+        .Info_Contato { padding: 20px; }
+
+    .Rodape_Conteudo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .Rodape_Marca { align-items: center; }
 }
 
 @media (max-width: 480px) {

@@ -3,6 +3,8 @@
     --verde-escuro: #1d4434;
     --fundo: #E6E9DF;
     --texto: #1f2d26;
+    --fonte-titulo: "Nunito Sans", sans-serif;
+    --fonte-texto: "Inter", sans-serif;
 }
 
 *, *::before, *::after {
@@ -10,11 +12,17 @@
 }
 
 body {
+    font-family: var(--fonte-texto);
     margin: 0;
     padding: 0;
     background-color: var(--fundo);
     color: var(--texto);
     font-size: 20px;
+}
+
+h1, h2, h3,
+.Topo .sumário a {
+    font-family: var(--fonte-titulo);
 }
 
 .Topo {
@@ -149,11 +157,17 @@ body {
     min-height: 110px;
 }
 
-.Form_Voluntario input:focus,
-.Form_Voluntario textarea:focus {
-    outline: none;
-    border-color: var(--verde);
-    box-shadow: 0 0 0 3px rgba(40, 90, 69, 0.2);
+.Form_Voluntario input,
+.Form_Voluntario textarea,
+.Form_Voluntario select {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 1rem;
+    border: 2px solid #c5cdbf;
+    border-radius: 10px;
+    background: #fafbf8;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .Form_Voluntario button {
@@ -174,9 +188,29 @@ body {
     background: var(--verde-escuro);
 }
 
-.Form_Voluntario button:focus-visible {
-    outline: 3px solid #ffd54a;
-    outline-offset: 2px;
+.Form_Voluntario input:focus,
+.Form_Voluntario textarea:focus,
+.Form_Voluntario select:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(40, 90, 69, 0.2);
+}
+
+.Form_Voluntario select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23285A45' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+}
+
+.Form_Voluntario select:invalid {
+    color: #7a8580;
+}
+
+.Form_Voluntario select option {
+    color: var(--texto);
 }
 
 /* ---------- Responsivo ---------- */

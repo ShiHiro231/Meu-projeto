@@ -1,51 +1,102 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROCRED - Seja Voluntário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Nunito+Sans:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="{% static 'administrador/css/voluntario.css' %}" />
-    <link rel="icon" type="image/x-icon" href="{% static 'administrador/img/Procred.png' %}" />
-</head>
-<body>
+    <link rel="icon" type="image/x-icon" href="{% static 'administrador/img/procred.png' %}" />
+  </head>
+  <body>
     <div class="Topo">
-        <div class="logotipo">
-            <a href="{% url 'home_publica' %}"><img src="{% static 'administrador/img/Procred.png' %}" alt="logotipo"></a>
-        </div>
-        <div class="sumário">
-            <ul class="List_Sumari">
-                <li><a href="{% url 'home_publica' %}#quem-somos">QUEM SOMOS</a></li>
-                <li><a href="{% url 'home_publica' %}#projetos">PROJETOS/AÇÕES</a></li>
-                <li><a href="{% url 'home_publica' %}#como-ajudar">COMO AJUDAR</a></li>
-                <li><a href="{% url 'home_publica' %}#voluntario">SEJA VOLUNTÁRIO</a></li>
-                <li><a href="{% url 'home_publica' %}#contato">CONTATO</a></li>
-            </ul>
-        </div>
+      <div class="logotipo">
+        <a href="{% url 'home_publica' %}">
+          <img src="{% static 'administrador/img/procred.png' %}" alt="logotipo" />
+        </a>
+      </div>
+      <div class="sumário">
+        <ul class="List_Sumari">
+          <li><a href="{% url 'home_publica' %}#Quem_Somos">QUEM SOMOS</a></li>
+          <li><a href="{% url 'home_publica' %}#projetos">PROJETOS/AÇÕES</a></li>
+          <li><a href="{% url 'home_publica' %}#como-ajudar">COMO AJUDAR</a></li>
+          <li><a href="{% url 'voluntario' %}">SEJA VOLUNTÁRIO</a></li>
+          <li><a href="{% url 'home_publica' %}#contato">CONTATO</a></li>
+        </ul>
+      </div>
     </div>
+    
     <div class="Voluntario">
-        <h2 class="Titulo">Seja Voluntário</h2>
-        <p class="Descricao">
-            Preencha o formulário abaixo para se inscrever como voluntário em nossos projetos e ações. Sua participação é fundamental para transformar vidas e fazer a diferença na comunidade.
-        </p>
-        <div class="Form_Voluntario">
-            <form method="POST">
-                {% csrf_token %}
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+      <h1 class="Titulo">Seja Voluntário</h1>
+      <p class="Descricao">
+        Preencha o formulário abaixo para se inscrever como voluntário em nossos
+        projetos e ações. Sua participação é fundamental para transformar vidas
+        e fazer a diferença na comunidade.
+      </p>
+      <div class="Form_Voluntario">
+        <!-- Formulário POST para a view do Django -->
+        <form method="POST">
+          {% csrf_token %}
+          
+          <label for="nome">Nome:</label>
+          <!-- O name precisa ser 'usuario' para bater com o UserForm do Django -->
+          <input type="text" id="nome" name="usuario" required />
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+          <label for="telefone">Telefone:</label>
+          <!-- O name precisa ser 'telefone' -->
+          <input type="tel" id="telefone" name="telefone" required />
 
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" required>
+          <label for="evento">Evento de Interesse:</label>
+          <!-- O select vai ser preenchido via JS com os eventos da API -->
+          <select id="select-evento" name="evento" required>
+            <option value="" disabled selected>Carregando eventos...</option>
+          </select>
 
-                <label for="interesses">Áreas de Interesse:</label>
-                <textarea id="interesses" name="interesses" rows="4" required></textarea>
-
-                <button type="submit">Enviar Inscrição</button>
-            </form>
-        </div>
+          <button type="submit">Enviar Inscrição</button>
+        </form>
+      </div>
     </div>
-</body>
+
+    <script>
+      // Função para buscar os eventos na API pública e preencher o Select
+      async function carregarEventosNoSelect() {
+        const select = document.getElementById("select-evento");
+        
+        try {
+          const resposta = await fetch('/administrador/api/publica/eventos/');
+          const eventos = await resposta.json();
+
+          // Limpa o "Carregando eventos..."
+          select.innerHTML = '<option value="" disabled selected>Selecione um evento</option>';
+
+          if (eventos.length === 0) {
+            select.innerHTML = '<option value="" disabled selected>Nenhum evento futuro disponível</option>';
+            return;
+          }
+
+          // Para cada evento da API, cria uma opção no select
+          eventos.forEach(ev => {
+            const option = document.createElement("option");
+            option.value = ev.id; // O valor enviado será o ID (ex: 1)
+            // Formata a data de AAAA-MM-DD para DD/MM/AAAA
+            option.textContent = `${ev.data.split('-').reverse().join('/')} - ${ev.nome_evento}`; 
+            select.appendChild(option);
+          });
+
+        } catch (erro) {
+          console.error("Erro ao carregar eventos:", erro);
+          select.innerHTML = '<option value="" disabled selected>Erro ao carregar eventos</option>';
+        }
+      }
+
+      // Executa a função assim que a página carregar
+      document.addEventListener("DOMContentLoaded", carregarEventosNoSelect);
+    </script>
+  </body>
 </html>
