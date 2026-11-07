@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROCRED - Doação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Nunito+Sans:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'administrador/css/pagamento.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'administrador/img/procred.png' %}" />
+  </head>
+  <body>
+    <div class="Topo">
+      <div class="logotipo">
+        <a href="{% url 'home_publica' %}">
+          <img src="{% static 'administrador/img/procred.png' %}" alt="logotipo" />
+        </a>
+      </div>
+      <div class="sumário">
+        <ul class="List_Sumari">
+          <li><a href="{% url 'home_publica' %}#Quem_Somos">QUEM SOMOS</a></li>
+          <li><a href="{% url 'home_publica' %}#projetos">PROJETOS/AÇÕES</a></li>
+          <li><a href="{% url 'home_publica' %}#como-ajudar">COMO AJUDAR</a></li>
+          <li><a href="{% url 'voluntario' %}">SEJA VOLUNTÁRIO</a></li>
+          <li><a href="{% url 'home_publica' %}#contato">CONTATO</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="Pagamento">
+      <h1 class="Titulo">Pagamento</h1>
+      <p class="Descricao">
+        Aqui você pode realizar o pagamento de suas doações de forma segura e
+        prática. No momento estamos recebendo doações somente via Pix e você
+        pode contribuir com o valor que seu coração desejar. Para contribuir
+        basta copiar a chave Pix ou, gerar e escanear o código QR.
+      </p>
+      <div class="Form_Pagamento">
+        <section class="pix-card">
+          <h2>Doe via Pix</h2>
+          <p class="pix-descricao">
+            Copie a chave abaixo e cole no app do seu banco.
+          </p>
+
+          <div class="pix-chave">
+            <span id="chavePix">00.000.000/0001-00</span>
+            <button type="button" id="btnCopiar" onclick="copiarPix()">
+              Copiar chave
+            </button>
+          </div>
+
+          <p class="pix-aviso" id="avisoCopiado" aria-live="polite"></p>
+
+          <button
+            type="button"
+            class="btn-qrcode"
+            id="btnQr"
+            aria-expanded="false"
+            aria-controls="qrBox"
+            onclick="alternarQr()"
+          >
+            Mostrar QR Code
+          </button>
+
+          <div class="qr-box Escondido" id="qrBox">
+            <img
+              src="{% static 'administrador/img/qrcode-pix.jpeg' %}"
+              alt="QR Code para doação via Pix"
+              class="qr-img"
+            />
+            <p class="qr-texto">Abra o app do seu banco e escaneie o código.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      function copiarPix() {
+        const chave = document.getElementById("chavePix").innerText;
+        const aviso = document.getElementById("avisoCopiado");
+        const botao = document.getElementById("btnCopiar");
+
+        navigator.clipboard
+          .writeText(chave)
+          .then(() => {
+            botao.textContent = "Copiado!";
+            botao.classList.add("copiado");
+            aviso.textContent = "Chave Pix copiada com sucesso.";
+
+            setTimeout(() => {
+              botao.textContent = "Copiar chave";
+              botao.classList.remove("copiado");
+              aviso.textContent = "";
+            }, 2500);
+          })
+          .catch(() => {
+            aviso.textContent =
+              "Não foi possível copiar. Selecione a chave e copie manualmente.";
+          });
+      }
+
+      function alternarQr() {
+        const caixa = document.getElementById("qrBox");
+        const botao = document.getElementById("btnQr");
+
+        const aberto = caixa.classList.toggle("Escondido") === false;
+
+        botao.textContent = aberto ? "Esconder QR Code" : "Mostrar QR Code";
+        botao.setAttribute("aria-expanded", aberto);
+      }
+    </script>
+  </body>
+</html>
